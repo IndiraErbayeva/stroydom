@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: stroydom
+      POSTGRES_PASSWORD: stroydom
+      POSTGRES_DB: stroydom
+    ports: ["5432:5432"]
+    volumes: [postgres_data:/var/lib/postgresql/data]
+  app:
+    build: .
+    depends_on: [postgres]
+    environment:
+      DATABASE_URL: postgresql://stroydom:stroydom@postgres:5432/stroydom?schema=public
+      AUTH_SECRET: ${AUTH_SECRET}
+      WHATSAPP_PHONE: ${WHATSAPP_PHONE}
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+    ports: ["3000:3000"]
+volumes:
+  postgres_data:

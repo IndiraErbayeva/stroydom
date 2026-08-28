@@ -1,0 +1,2 @@
+import Link from "next/link";
+export function Header(){return <header className="bg-navy text-white"><div className="container flex min-h-16 items-center justify-between gap-5"><Link className="text-2xl font-black" href="/">Строй<span className="text-orange">Дом</span></Link><nav className="flex gap-4 text-sm"><Link href="/catalog">Каталог</Link><Link href="/cart">Корзина</Link><Link href="/admin">Админ</Link></nav></div></header>}
